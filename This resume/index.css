@@ -1,0 +1,463 @@
+/*Importing Google Fonts - Poppin*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(#F1FAFF, #cbe4ff);  
+}
+
+
+.sidebar {
+     background: #151a2d;
+     width: 270px;
+     position: fixed;
+     margin: 16px;
+     border-radius: 16px;
+     height: calc(100vh - 32px);
+     transition: 0.4s ease;
+}
+
+.sidebar.collapsed {
+    width: 85px;
+}
+
+.siderbar-header {
+    position: relative;
+    display: flex;
+    padding: 25px 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.siderbar-header .header-logo img {
+    width: 46px;
+    height: 46px;
+    display: block;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.siderbar-header .toggler {
+    height: 35px;
+    width: 35px;
+    border: none;
+    color: #151a2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #fff;
+    transition: 0.4s ease;
+}
+
+.siderbar-header .sidebar-toggler {
+    position: absolute;
+    right: 20px;
+}
+
+.sidebar.collapsed .siderbar-header .sidebar-toggler {
+    transform: translate(-4px, 65px);
+}
+
+.siderbar-header .toggler:hover {
+    background: #fff;
+}
+
+.siderbar-header .menu-toggler {
+    display: none;
+}
+
+.siderbar-header .sidebar-toggler span {
+    font-size: 1.75rem;
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .siderbar-header .sidebar-toggler span {
+    transform: rotate(180deg);
+}
+
+.sidebar-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    padding: 0 15px;
+    flex-direction: column;
+    transform: translateY(15px);
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .primary-nav {
+    transform: translateY(65px);
+}
+
+.sidebar-nav .nav-link{
+     color: #fff;
+     display: flex;
+     gap: 12px;
+     white-space: nowrap;
+     border-radius: 8px;
+     align-items: center;
+     padding: 12px 15px;
+     text-decoration: none;
+     transition: 0.4s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #151a2d;
+    background: #fff;
+}
+
+.sidebar-nav .nav-link .nav-label {
+    transition: opacity 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-link .nav-label {
+    opacity: 0;
+    pointer-events: none;
+} 
+
+.sidebar-nav .nav-item {
+    position: relative;
+}
+
+.sidebar-nav .nav-tooltip {
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    left: calc(100% + 25px);
+    color: #151a2d;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #fff;
+    white-space: nowrap;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0s;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-tooltip{
+    display: block;
+}
+
+.sidebar-nav .nav-item:hover .nav-tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(50%);
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .secondary-nav {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        height: 56px;
+        margin : 13px;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        width: calc(100% - 28px);
+        max-height: calc(100vh - 28px);
+    }
+
+    .sidebar.menu-active {
+        overflow-y: auto;
+    }
+
+    .siderbar-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #151a2d;
+        padding: 8px 10px;
+        border-radius: 16px;
+    }
+
+    .siderbar-header .header-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .siderbar-header .sidebar-toggler,
+     .sidebar-nav .nav-tooltip {
+        display: none;
+    }
+
+    .siderbar-header .menu-toggler {
+        display: flex;
+        height: 30px;
+        width: 30px;
+    }
+
+    .siderbar-header .menu-toggler span {
+        font-size: 1.3rem;
+    }
+
+    .sidebar-nav .nav-list {
+        padding: 0 10px;
+    }
+
+    .sidebar-nav .nav-link {
+        gap: 10px;
+        padding: 10px;
+        font-size: 0.94rem;
+    }
+
+    .sidebar-nav .nav-link .nav-icon {
+        font-size: 1.37rem;
+    }
+
+    .sidebar-nav .secondary-nav {
+        position: relative;
+        bottom: 0;
+        margin: 40px 0 30px;
+    }
+}
+
+/*This the end for the navbar css*/
+/*All the code above is for the navbar*/
+
+/* Container to hold the sidebar and content */
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    transition: margin-left 0.4s ease;
+}
+
+/* Main Content Styles */
+.content {
+    flex-grow: 1; /* Make the content take the remaining space */
+    padding: 20px;
+    margin-left: 290px; /* Space for sidebar (adjust for spacing) */
+    transition: margin-left 0.4s ease;
+}
+
+.sidebar.collapsed ~ .content {
+    margin-left: 105px; /* Adjusted margin when sidebar is collapsed */
+}
+
+
+/* lab background */
+.home-background {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    color: white;
+    overflow: hidden;
+}
+
+.lab-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("website icons/lab background.jpg"); /* Replace with your lab background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -2;
+}
+
+#Home {
+    text-align: center;
+    padding: 2rem;
+}
+
+/*ABout CSS*/
+#About {
+    text-align: center;
+    padding: 2rem;
+}
+
+#About img {
+    width: 150px; /* Set all images to the same size */
+    height: 150px;
+    margin: 10px; /* Spacing between images */
+    border-radius: 10px; /* Smooth edges */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    position: relative;
+    cursor: pointer;
+}
+
+#About img:hover {
+    transform: scale(1.1); /* Pop-out effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+#About img::after {
+    content: attr(data-description); /* Use data-description attribute as the label */
+    position: absolute;
+    bottom: -40px; /* Position description text below the image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for readability */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Initially hidden */
+    transition: opacity 0.3s ease, visibility 0s 0.3s; /* Smooth appearance */
+}
+
+#About img:hover::after {
+    opacity: 1; /* Make description visible */
+    visibility: visible; /* Ensure visibility */
+    transition: opacity 0.3s ease, visibility 0s 0s; /* Instant visibility */
+}
+
+/*Documenation CSS*/
+#Documentation {
+    text-align: center;
+    padding: 2rem;
+}
+
+#Documentation img {
+    margin: 10px;
+    border-radius: 10px; /* Smooth edges */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    position: relative;
+    cursor: pointer;
+}
+
+
+#Documentation img:hover {
+    transform: scale(1.1); /* Pop-out effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+
+/*Database CSS*/
+#Database {
+    text-align: center;
+    padding: 2rem;
+}
+
+#Database img {
+    width: 700px; /* Adjust the size to make the image small but clear */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+#Database img:hover {
+    transform: scale(1.1); /* Image slightly enlarges on hover */
+}
+
+/*Concept slide CSS*/
+#Concepts{
+    text-align: center;
+    padding: 2rem;
+}
+
+#Concepts img {
+    width: 700px;
+    height: auto;
+    margin: 10px;
+    border-radius: 10px; /* Smooth edges */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    position: relative;
+    cursor: pointer;
+}
+
+
+#Concepts img:hover {
+    transform: scale(1.1); /* Pop-out effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+
+/*Resume CSS*/
+#Resume h2 {
+    text-align: center;
+}
+
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.left-column, .right-column {
+    flex: 1;
+    padding: 20px;
+}
+
+/* General Section Styles */
+h2 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/* Entry Styles */
+.entry {
+    border-left: 2px solid #00AEEF; /* Light blue line */
+    padding-left: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.entry h3 {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.entry span {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.entry p {
+    margin-bottom: 8px;
+}
+
+.entry ul {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.entry ul li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.entry ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00AEEF;
+}
+
+/* Timeline Dots */
+.entry::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background-color: #00AEEF;
+    border-radius: 50%;
+}

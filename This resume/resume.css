@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.navbar {
+    height: 100vh; /* Full height */
+    width: 200px; /* Width of the navbar */
+    background-color: #1d1a1a; /* Background color */
+    padding: 20px 0; /* Space from the top */
+    position: fixed; /* Stay in place */
+}
+.navbar a {
+    padding: 15px 20px;
+    text-decoration: none; /* No underline */
+    color: white; /* Text color */
+    display: block; /* Make links block elements */
+    border-bottom: 1px solid #444; /* Border between links */
+}
+.navbar a:hover {
+    background-color: #575757; /* Darker background on hover */
+}
+.content {
+    margin-left: 220px; /* Space for the navbar */
+    padding: 20px; /* Padding for content */
+}
+.logo {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between the logo and nav links */
+}
